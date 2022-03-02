@@ -2,14 +2,14 @@ class Solution {
 public:
     long long getDescentPeriods(vector<int>& prices) {
         long long ans = 0;
-        long long pricesSize = prices.size();
+        int pricesSize = prices.size();
         ans += pricesSize;
         
         if (pricesSize == 1)
             return ans;
         
         // find all the longest non overlapping smooth periods
-        vector<long long> periodsLength;
+        vector<long> periodsLength;
         int curVal = prices[0];
         int curStreak = 1;
         for (int i = 1; i < pricesSize; ++i) {
