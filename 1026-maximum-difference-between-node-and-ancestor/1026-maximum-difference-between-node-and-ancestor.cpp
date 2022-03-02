@@ -11,14 +11,15 @@
  */
 class Solution {
 public:
-    int maxDiff = INT_MIN;
+    
     int maxAncestorDiff(TreeNode* root) {
-        maxAncestorDiff(root->left, root->val, root->val);
-        maxAncestorDiff(root->right, root->val, root->val);
+        int maxDiff = INT_MIN;
+        maxAncestorDiff(root->left, root->val, root->val, maxDiff);
+        maxAncestorDiff(root->right, root->val, root->val, maxDiff);
         return maxDiff;
     }
     
-    void maxAncestorDiff(TreeNode* root, int curMax, int curMin) {
+    void maxAncestorDiff(TreeNode* root, int curMax, int curMin, int& maxDiff) {
         if (root == nullptr)
             return;
         
@@ -26,7 +27,7 @@ public:
         curMin = min(root->val, curMin);
         maxDiff = max(maxDiff, abs(curMax - curMin));
         
-        maxAncestorDiff(root->left, curMax, curMin);
-        maxAncestorDiff(root->right, curMax, curMin);
+        maxAncestorDiff(root->left, curMax, curMin, maxDiff);
+        maxAncestorDiff(root->right, curMax, curMin, maxDiff);
     }
 };
