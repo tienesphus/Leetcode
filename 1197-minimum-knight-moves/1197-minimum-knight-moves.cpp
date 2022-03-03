@@ -1,6 +1,9 @@
 class Solution {
 public:
     int minKnightMoves(int x, int y) {
+        if (x == 0 && y == 0)
+            return 0;
+        
         vector<pair<int,int>> directions = {{2,1}, {1,2}, {-1,2}, {1,-2}, {-1,-2}, {-2,1}, {2,-1}, {-2,-1}};
         x = x + 300;
         y = y + 300;
@@ -18,9 +21,6 @@ public:
         while (!q.empty()) {
             curCel = q.front();
             q.pop();
-
-            if (curCel.first == x && curCel.second == y)
-                return visited[curCel.first][curCel.second];
             
             for (auto& direction: directions) {
                 newX = curCel.first + direction.first;
