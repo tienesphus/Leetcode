@@ -33,6 +33,7 @@ public:
                 
                 if (newX == x && newY == y)
                     return visited[newX][newY];
+                
                 q.push({newX,newY});
              }
         }
