@@ -15,16 +15,13 @@ public:
         queue<pair<int,int>> q;
         q.push({300,300});
         
-        pair<int,int> curCel;
-        int newX, newY;
-        
         while (!q.empty()) {
-            curCel = q.front();
+            auto curCel = q.front();
             q.pop();
             
             for (auto& direction: directions) {
-                newX = curCel.first + direction.first;
-                newY = curCel.second + direction.second;
+                int newX = curCel.first + direction.first;
+                int newY = curCel.second + direction.second;
                 
                 if (newX < 0 || newX >= m || newY < 0 || newY >= n || visited[newX][newY] != -1)
                     continue;
