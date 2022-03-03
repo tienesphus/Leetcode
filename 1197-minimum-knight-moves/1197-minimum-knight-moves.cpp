@@ -23,13 +23,11 @@ public:
                 int newX = curCel[0] + direction[0];
                 int newY = curCel[1] + direction[1];
                 
-                if (newX < 0 || newX >= m || newY < 0 || newY >= n)
+                if (newX < 0 || newX >= m || newY < 0 || newY >= n || visited[newX][newY] != -1)
                     continue;
                 
-                if (visited[newX][newY] == -1) {
-                    visited[newX][newY] = visited[curCel[0]][curCel[1]] + 1;
-                    q.push({newX,newY});
-                }
+                visited[newX][newY] = visited[curCel[0]][curCel[1]] + 1;
+                q.push({newX,newY});
                 
                 //cout << "visited count:: " << newX << " " << newY << " " << visited[newX][newY] << '\n';
              }
