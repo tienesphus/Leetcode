@@ -30,6 +30,9 @@ public:
                     continue;
                 
                 visited[newX][newY] = visited[curCel.first][curCel.second] + 1;
+                
+                if (newX == x && newY == y)
+                    return visited[newX][newY];
                 q.push({newX,newY});
              }
         }
