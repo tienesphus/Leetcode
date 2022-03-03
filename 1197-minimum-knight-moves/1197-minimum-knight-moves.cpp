@@ -9,27 +9,27 @@ public:
         int m = visited.size();
         int n = visited[0].size();
         
-        queue<vector<int>> q;
+        queue<pair<int,int>> q;
         q.push({300,300});
         
-        vector<int> curCel;
+        pair<int,int> curCel;
         int newX, newY;
         
         while (!q.empty()) {
             curCel = q.front();
             q.pop();
 
-            if (curCel[0] == x && curCel[1] == y)
-                return visited[curCel[0]][curCel[1]];
+            if (curCel.first == x && curCel.second == y)
+                return visited[curCel.first][curCel.second];
             
             for (auto& direction: directions) {
-                newX = curCel[0] + direction[0];
-                newY = curCel[1] + direction[1];
+                newX = curCel.first + direction[0];
+                newY = curCel.second + direction[1];
                 
                 if (newX < 0 || newX >= m || newY < 0 || newY >= n || visited[newX][newY] != -1)
                     continue;
                 
-                visited[newX][newY] = visited[curCel[0]][curCel[1]] + 1;
+                visited[newX][newY] = visited[curCel.first][curCel.second] + 1;
                 q.push({newX,newY});
              }
         }
