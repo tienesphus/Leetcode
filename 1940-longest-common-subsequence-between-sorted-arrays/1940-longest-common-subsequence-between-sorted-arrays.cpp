@@ -17,7 +17,7 @@ public:
                     ans.push_back(ele);
             }
         }
-        // O(m) with m is the largest number out of all elements in arrays
+        // O(m) space with m is the largest number out of all elements in arrays
         return ans;
     }
 };
