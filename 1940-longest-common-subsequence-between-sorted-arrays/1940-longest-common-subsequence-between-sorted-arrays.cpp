@@ -1,30 +1,26 @@
 class Solution {
 public:
     vector<int> longestCommonSubsequence(vector<vector<int>>& arrays) {
-        map<int,int> countTable;
         int n = arrays.size();
+        int m = arrays[0].back();
+        
+        vector<int> countTable(m+1, 0);
         
         for (auto& array: arrays) {
             for (auto& ele: array) {
-                auto it = countTable.find(ele);
-                
-                if (it != countTable.end())
-                    it->second += 1;
-                else {
-                    countTable.insert(make_pair(ele, 1));
-                }
+                if (ele > m)
+                    continue;
+                countTable[ele] += 1;
             }
         }
         
-        
         vector<int> ans;
-        for (auto& pair: countTable) {
-            if (pair.second == n)
-                ans.push_back(pair.first);
+        for (int i = 0; i < countTable.size(); i++) {
+            if (countTable[i] == n) {
+                ans.push_back(i);
+            }
         }
         
         return ans;
     }
 };
-
-
