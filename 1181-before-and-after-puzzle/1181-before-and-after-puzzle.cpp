@@ -4,6 +4,7 @@ public:
         unordered_map<string,vector<int>> pendingWords;
         set<string> ans;
         
+        //push all last words into a map with its index
         for (int i = 0; i < phrases.size(); i++) {
             string lastWord = findLastWord(phrases[i]);
             auto it = pendingWords.find(lastWord);
@@ -14,17 +15,22 @@ public:
                 pendingWords.insert(make_pair(lastWord,vector<int>{i}));
         }
         
+        //for all first words
         for (int i = 0; i < phrases.size(); i++) {
+            //check map for first word
             string firstWord = findFirstWord(phrases[i]);
             auto it = pendingWords.find(firstWord);
             
             if (it == pendingWords.end())
                 continue;
             
+            
             for (auto& idx: it->second) {
+                // skip phrase with same first and last word
                 if (idx == i)
                     continue;
                 
+                //concat and push
                 string toBePushed = phrases[idx] + phrases[i].substr(firstWord.size(), phrases[i].size() - firstWord.size());   
                 ans.insert(toBePushed);
             }
