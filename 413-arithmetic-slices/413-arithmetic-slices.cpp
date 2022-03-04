@@ -1,19 +1,19 @@
 class Solution {
 public:
     int numberOfArithmeticSlices(vector<int>& nums) {
-        int count = 0;
         int n = nums.size();
-        for (int i = 0; i < n; i++) {
-            bool isArithmetic = true;
-
-            for (int j = i + 2; j < n; j++) {
-                if (!isArithmetic)
-                    break;
-                isArithmetic = ((nums[j] - nums[j-1]) == (nums[j-1] - nums[j-2]));
-                if (j - i >= 2 && isArithmetic)
-                    count++;
-            }
+        vector<int> dp(n,0);
+        
+        for (int i = 2; i < n; i++) {
+            bool checkArithmetic = ((nums[i] - nums[i-1]) == (nums[i-1] - nums[i-2]));
+            if (checkArithmetic)
+                dp[i] = dp[i-1] + 1;
         }
-        return count;
+        
+        int ans = 0;
+        for (auto& ele: dp)
+            ans += ele;
+        
+        return ans;
     }
 };
